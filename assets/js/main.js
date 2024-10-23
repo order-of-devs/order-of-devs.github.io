@@ -84,7 +84,7 @@ var spy = new Gumshoe('#navigation a', {
 
 /* ======= Countdown ========= */
 // set the date we're counting down to
-var target_date = new Date("Oct 12, 2028").getTime();
+var target_date = new Date("Oct 20, 2024").getTime();
  
 // variables for time units
 var days, hours, minutes, seconds;
@@ -122,9 +122,9 @@ setInterval(function () {
     seconds = parseInt(seconds_left % 60);
      
     // format countdown string + set tag value.
-    days_span.innerHTML = '<span class="number">' + days + '</span>' + '<span class="unit">Days</span>';
-    hours_span.innerHTML = '<span class="number">' + hours + '</span>' + '<span class="unit">Hrs</span>';
-    minutes_span.innerHTML = '<span class="number">' + minutes + '</span>' + '<span class="unit">Mins</span>';
-    secs_span.innerHTML = '<span class="number">' + seconds + '</span>' + '<span class="unit">Secs</span>'; 
+    days_span.innerHTML = '<span class="number">' + days + '</span>' + '<span class="unit">Dni</span>';
+    hours_span.innerHTML = '<span class="number">' + hours + '</span>' + '<span class="unit">Godzin</span>';
+    minutes_span.innerHTML = '<span class="number">' + minutes + '</span>' + '<span class="unit">Minut</span>';
+    secs_span.innerHTML = '<span class="number">' + seconds + '</span>' + '<span class="unit">Sekund</span>'; 
  
 }, 1000);
