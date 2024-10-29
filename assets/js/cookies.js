@@ -14,14 +14,19 @@ const getCookie = (name) => {
   }
   return null;
 };
+
 const handleCookieChoice = (choice) => {
   if (choice === "accept") {
-    setCookie("userConsent", "accepted", 365);
+    setCookie("userConsent", "bannershowed", 365);
   } else if (choice === "reject") {
-    setCookie("userConsent", "rejected", 365);
-    // Tutaj można zablokować ciastka używane na stronie, np.:
-    // document.cookie = "ciasteczkoDoZablokowania=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setCookie("userConsent", "bannershowed", 365);
+    const cookiesToDelete = ["_ga", "_ga_J03H31BQKV"];
+
+    cookiesToDelete.forEach((cookieName) => {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    });
   }
+
   document.getElementById("cookie-banner").classList.add("d-none");
 };
 
