@@ -17,9 +17,9 @@ const getCookie = (name) => {
 
 const handleCookieChoice = (choice) => {
   if (choice === "accept") {
-    setCookie("userConsent", "bannershowed", 365);
+    setCookie("userConsent", "accept", 365);
   } else if (choice === "reject") {
-    setCookie("userConsent", "bannershowed", 365);
+    setCookie("userConsent", "reject", 365);
     const cookiesToDelete = ["_ga", "_ga_J03H31BQKV"];
 
     cookiesToDelete.forEach((cookieName) => {
