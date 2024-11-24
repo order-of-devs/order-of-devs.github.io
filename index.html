@@ -7,7 +7,7 @@
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            
+
             gtag('config', 'G-J03H31BQKV');
         </script>
         <title>Order Of Devs - Konferencja Charytatywna 2024</title>
@@ -26,8 +26,9 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700,800|Roboto:300,400,700&display=swap" rel="stylesheet">
         <!-- FontAwesome JS-->
         <!-- <script defer src="assets/fontawesome/js/all.min.js"></script> -->
+        <link rel="stylesheet" href="https://public-assets.tagconcierge.com/consent-banner/1.2.3/styles/light.css" />
         <script src="https://kit.fontawesome.com/973b008fc8.js" crossorigin="anonymous"></script>
-        <!-- Theme CSS -->  
+        <!-- Theme CSS -->
         <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
     </head>
     <body>
@@ -2208,12 +2209,63 @@
             <!--//modal-dialog-->
         </div>
         <!--//modal-->
-        <!-- Javascript -->          
+        <!-- Javascript -->
         <script src="assets/plugins/popper.min.js"></script>
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
         <script src="assets/plugins/smoothscroll.min.js"></script>
         <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
         <script src="assets/js/main.js"></script>
-        <script src="assets/js/cookies.js"></script>
+        <script src="https://public-assets.tagconcierge.com/consent-banner/1.2.3/cb.min.js" integrity="sha384-zXUdInIfEJI2FEImKEFc2cmja+Jn7TViSXzqt6OhABX0jMgz6Mctrc864uJaN5PX" crossorigin="anonymous"></script>
+        <script>
+           const config =  {
+                display: {
+                    mode: 'bar',
+                    wall: true
+                },
+                consent_types: [{
+                    name: 'ad_storage', // internal name of consent type, used for final JS object
+                    title: 'Ad Storage', // user facing title for consent type
+                    description: 'Cookies used for advertising purposes', // description visible in the settings view
+                    default: 'denied', // what should be the default state when user decides to customize the settings
+                    require: false // if set to true it won't be possible to save consent without this granted
+                }],
+                modal: {
+                    title: 'Nasza strona korzysta z ciasteczek',
+                    description: 'Więcej informacji znajdziesz w <a href="/polityka-prywatnosci.html"> polityce prywatności</a>.',
+                    buttons: {
+                        settings: 'Ustawienia',
+                        reject: 'Odrzuć',
+                        accept: 'Zaakceptuj'
+                    }
+                },
+                settings: {
+                    title: 'Dostosuj ustawienia',
+                    description: 'Longer description with *simple markdown support*.',
+                    buttons: {
+                        settings: 'Ustawienia',
+                        close: 'Zamknij',
+                        reject: 'Odrzuć',
+                        accept: 'Zaakceptuj'
+                    }
+                }
+            }
+        </script>
+        <script>
+            cookiesBannerJs(
+              function() {
+                try {
+                  return JSON.parse(sessionStorage.getItem('consent_preferences'));
+                } catch (error) {
+                  return null;
+                }
+              },
+              function(consentState) {
+                sessionStorage.setItem('consent_preferences', JSON.stringify(consentState));
+              },
+              config
+            );
+          </script>
+        </body>
+      </html>
     </body>
 </html>
