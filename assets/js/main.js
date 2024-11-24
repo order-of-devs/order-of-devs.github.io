@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', function () {
     cookiesBannerJs(
         function() {
             try {
-                return JSON.parse(sessionStorage.getItem('consent_preferences'));
+                return JSON.parse(localStorage.getItem('consent_preferences'));
             } catch (error) {
                 return null;
             }
         },
         function(consentState) {
-            sessionStorage.setItem('consent_preferences', JSON.stringify(consentState));
+            localStorage.setItem('consent_preferences', JSON.stringify(consentState));
             const isGranted = consentState['ga_storage'];
             if (isGranted === "granted") {
                 window.dataLayer = window.dataLayer || [];
