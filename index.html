@@ -2235,9 +2235,9 @@
                     wall: true
                 },
                 consent_types: [{
-                    name: 'ad_storage', // internal name of consent type, used for final JS object
-                    title: 'Ad Storage', // user facing title for consent type
-                    description: 'Cookies used for advertising purposes', // description visible in the settings view
+                    name: 'ga_storage', // internal name of consent type, used for final JS object
+                    title: 'Google Analytics', // user facing title for consent type
+                    description: 'Ciasteczka Powiązane z Google Analytics', // description visible in the settings view
                     default: 'denied', // what should be the default state when user decides to customize the settings
                     require: false // if set to true it won't be possible to save consent without this granted
                 }],
@@ -2252,9 +2252,8 @@
                 },
                 settings: {
                     title: 'Dostosuj ustawienia',
-                    description: 'Longer description with *simple markdown support*.',
+                    description: 'Zaznacz te ciasteczka, które chcesz zaakceptować',
                     buttons: {
-                        settings: 'Ustawienia',
                         close: 'Zamknij',
                         reject: 'Odrzuć',
                         accept: 'Zaakceptuj'
