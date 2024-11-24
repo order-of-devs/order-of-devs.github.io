@@ -2265,7 +2265,8 @@
               },
               function(consentState) {
                 sessionStorage.setItem('consent_preferences', JSON.stringify(consentState));
-                if (isConsentGranted('ga_storage')) {
+                const isGranted = consentState['ga_storage'];
+                if (isGranted === "granted") {
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
