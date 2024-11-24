@@ -134,42 +134,45 @@ var days, hours, minutes, seconds;
 
 // get tag element
 var countdown = document.getElementById("countdown-box");
-var days_span = document.createElement("SPAN");
-days_span.className = 'days';
-countdown.appendChild(days_span);
-var hours_span = document.createElement("SPAN");
-hours_span.className = 'hours';
-countdown.appendChild(hours_span);
-var minutes_span = document.createElement("SPAN");
-minutes_span.className = 'minutes';
-countdown.appendChild(minutes_span);
-var secs_span = document.createElement("SPAN");
-secs_span.className = 'secs';
-countdown.appendChild(secs_span);
+if (countdown) {
+    var days_span = document.createElement("SPAN");
+    days_span.className = 'days';
+    countdown.appendChild(days_span);
+    var hours_span = document.createElement("SPAN");
+    hours_span.className = 'hours';
+    countdown.appendChild(hours_span);
+    var minutes_span = document.createElement("SPAN");
+    minutes_span.className = 'minutes';
+    countdown.appendChild(minutes_span);
+    var secs_span = document.createElement("SPAN");
+    secs_span.className = 'secs';
+    countdown.appendChild(secs_span);
 
-// update the tag with id "countdown" every 1 second
-setInterval(function () {
-    const targetDate = new Date('2024-11-27T16:00:00').getTime();
 
-    const current = new Date().getTime();
+    // update the tag with id "countdown" every 1 second
+    setInterval(function () {
+        const targetDate = new Date('2024-11-27T16:00:00').getTime();
 
-    // Calculate the time difference in seconds
-    let seconds_left = Math.max(0, (targetDate - current) / 1000);
+        const current = new Date().getTime();
 
-    // Time calculations
-    const days = Math.floor(seconds_left / 86400);
-    seconds_left %= 86400;
+        // Calculate the time difference in seconds
+        let seconds_left = Math.max(0, (targetDate - current) / 1000);
 
-    const hours = Math.floor(seconds_left / 3600);
-    seconds_left %= 3600;
+        // Time calculations
+        const days = Math.floor(seconds_left / 86400);
+        seconds_left %= 86400;
 
-    const minutes = Math.floor(seconds_left / 60);
-    const seconds = Math.floor(seconds_left % 60);
+        const hours = Math.floor(seconds_left / 3600);
+        seconds_left %= 3600;
 
-    // format countdown string + set tag value.
-    days_span.innerHTML = '<span class="number">' + days + '</span>' + '<span class="unit">Dni</span>';
-    hours_span.innerHTML = '<span class="number">' + hours + '</span>' + '<span class="unit">Godzin</span>';
-    minutes_span.innerHTML = '<span class="number">' + minutes + '</span>' + '<span class="unit">Minut</span>';
-    secs_span.innerHTML = '<span class="number">' + seconds + '</span>' + '<span class="unit">Sekund</span>';
+        const minutes = Math.floor(seconds_left / 60);
+        const seconds = Math.floor(seconds_left % 60);
 
-}, 1000);
+        // format countdown string + set tag value.
+        days_span.innerHTML = '<span class="number">' + days + '</span>' + '<span class="unit">Dni</span>';
+        hours_span.innerHTML = '<span class="number">' + hours + '</span>' + '<span class="unit">Godzin</span>';
+        minutes_span.innerHTML = '<span class="number">' + minutes + '</span>' + '<span class="unit">Minut</span>';
+        secs_span.innerHTML = '<span class="number">' + seconds + '</span>' + '<span class="unit">Sekund</span>';
+
+    }, 1000);
+}
