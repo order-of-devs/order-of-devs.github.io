@@ -3,13 +3,6 @@
     <head>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-J03H31BQKV"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            
-            gtag('config', 'G-J03H31BQKV');
-        </script>
         <title>Order Of Devs - Konferencja Charytatywna 2024</title>
         <!-- Meta -->
         <meta charset="utf-8">
@@ -26,8 +19,9 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700,800|Roboto:300,400,700&display=swap" rel="stylesheet">
         <!-- FontAwesome JS-->
         <!-- <script defer src="assets/fontawesome/js/all.min.js"></script> -->
+        <link rel="stylesheet" href="https://public-assets.tagconcierge.com/consent-banner/1.2.3/styles/light.css" />
         <script src="https://kit.fontawesome.com/973b008fc8.js" crossorigin="anonymous"></script>
-        <!-- Theme CSS -->  
+        <!-- Theme CSS -->
         <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
     </head>
     <body>
@@ -1286,6 +1280,18 @@
             </div>
         </section>
         <footer class="footer py-5 theme-bg-primary">
+            <div id="cookie-banner" class="fixed-bottom bg-light py-3 py-md-5 px-4 border-top d-none">
+                <div class="d-flex flex-column gap-2 flex-md-row justify-content-center align-items-center gap-md-5">
+                    <div class="text-secondary fs-5 py-3 py-md-1">
+                        Nasza strona korzysta z ciasteczek.
+                    </div>
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <button id="accept-cookies" class="btn btn-primary">Akceptuję</button>
+                        <button id="reject-cookies" class="btn btn-danger">Odrzucam</button>
+                        <a href="/polityka-prywatnosci" class="btn btn-success">Dowiedz się więcej</a>
+                    </div>
+                </div>
+            </div>
             <div class="container text-center">
                 <ul class="social-list list-inline mb-4">
                     <li class="list-inline-item me-3"><a href="mailto:contact@orderofdevs.com"><i class="fas fa-envelope"></i></a></li>
@@ -2208,12 +2214,70 @@
             <!--//modal-dialog-->
         </div>
         <!--//modal-->
-        <!-- Javascript -->          
+        <!-- Javascript -->
         <script src="assets/plugins/popper.min.js"></script>
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
         <script src="assets/plugins/smoothscroll.min.js"></script>
         <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
         <script src="assets/js/main.js"></script>
-        <script src="assets/js/cookies.js"></script>
+        <script src="https://public-assets.tagconcierge.com/consent-banner/1.2.3/cb.min.js" integrity="sha384-zXUdInIfEJI2FEImKEFc2cmja+Jn7TViSXzqt6OhABX0jMgz6Mctrc864uJaN5PX" crossorigin="anonymous"></script>
+        <script>
+           const config =  {
+                display: {
+                    mode: 'bar',
+                    wall: true
+                },
+                consent_types: [{
+                    name: 'ga_storage', // internal name of consent type, used for final JS object
+                    title: 'Google Analytics', // user facing title for consent type
+                    description: 'Ciasteczka Powiązane z Google Analytics', // description visible in the settings view
+                    default: 'denied', // what should be the default state when user decides to customize the settings
+                    require: false // if set to true it won't be possible to save consent without this granted
+                }],
+                modal: {
+                    title: 'Nasza strona korzysta z ciasteczek',
+                    description: 'Więcej informacji znajdziesz w <a href="/polityka-prywatnosci.html"> polityce prywatności</a>.',
+                    buttons: {
+                        settings: 'Ustawienia',
+                        reject: 'Odrzuć',
+                        accept: 'Zaakceptuj'
+                    }
+                },
+                settings: {
+                    title: 'Dostosuj ustawienia',
+                    description: 'Zaznacz te ciasteczka, które chcesz zaakceptować',
+                    buttons: {
+                        close: 'Zamknij',
+                        reject: 'Odrzuć',
+                        accept: 'Zaakceptuj'
+                    }
+                }
+            }
+        </script>
+        <script>
+            cookiesBannerJs(
+              function() {
+                try {
+                  return JSON.parse(sessionStorage.getItem('consent_preferences'));
+                } catch (error) {
+                  return null;
+                }
+              },
+              function(consentState) {
+                sessionStorage.setItem('consent_preferences', JSON.stringify(consentState));
+                const isGranted = consentState['ga_storage'];
+                if (isGranted === "granted") {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+
+                    gtag('config', 'G-J03H31BQKV');
+                }
+              },
+              config
+            );
+          </script>
+        </body>
+      </html>
     </body>
 </html>
